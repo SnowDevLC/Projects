@@ -1,12 +1,8 @@
 require("dotenv").config();
 const { Sequelize } = require("sequelize");
-
 const fs = require('fs');
 const path = require('path');
-const {
-  DB_USER, DB_PASSWORD, DB_HOST,
-} = process.env;
-
+const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/countries`, {
   logging: false, 
   native: false, 
@@ -15,6 +11,7 @@ const basename = path.basename(__filename);
 
 const modelDefiners = [];
 
+// Se leen los archivos del directorio /models y se agregan al array de modelDefiners
 fs.readdirSync(path.join(__dirname, '/models'))
   .filter((file) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
   .forEach((file) => {
@@ -28,10 +25,14 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Country } = sequelize.models;
+// Se desestructuran los modelos para acceder directamente a ellos
+const { Country, Activity } = sequelize.models;
 
 // Aca vendrian las relaciones
-// Product.hasMany(Reviews);
+// Country pertenece a muchos Activity
+Country.belongsToMany(Activity, { through: 'country_activity', tableName: 'countries' });
+// Activity pertenece a muchos Country
+Activity.belongsToMany(Country, { through: 'country_activity', tableName: "activities" });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
