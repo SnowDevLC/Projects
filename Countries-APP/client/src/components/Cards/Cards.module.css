@@ -1,0 +1,33 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
+  grid-auto-rows: 350px;
+  justify-content: center;
+  gap: 30px;
+}
+
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination button {
+  border: none;
+  background-color: #f2f2f2;
+  color: #333;
+  padding: 8px 12px;
+  margin: 0 4px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.pagination button:hover {
+  background-color: #ddd;
+}
+
+.pagination button.active {
+  background-color: #007bff;
+  color: #fff;
+}

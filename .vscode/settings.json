@@ -9,5 +9,10 @@
             "database": "countries",
             "username": "postgres"
         }
-    ]
+    ],
+    "prettier.endOfLine": "crlf",
+    "prettier.proseWrap": "preserve",
+    "prettier.singleAttributePerLine": false,
+    "prettier.singleQuote": false,
+    "prettier.tabWidth": 4
 }

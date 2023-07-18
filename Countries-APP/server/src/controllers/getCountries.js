@@ -2,7 +2,7 @@ const { Country, Activity } = require("../db");
 
 const getCountries = async (req, res) => {
   try {
-    const results = await Country.findAll({ include: { model: Activity } });
+    const results = await Country.findAll();
 
     if (!results.length) return res.status(400).json({ error: error.message });
     return res.status(200).json(results);

@@ -1,7 +1,7 @@
 const axios = require("axios");
 const { Country } = require("../db");
 
-const loadApi = async () => {
+const loadApi = async (req, res) => {
   try {
     const {data} = await axios.get("http://localhost:5000/countries");
 
@@ -18,9 +18,8 @@ const loadApi = async () => {
       };
     });
     await Country.bulkCreate(countries);
-    
   } catch (error) {
-    
+    console.log("No se pudo cargar la data desde la API", error);
   }
 };
 

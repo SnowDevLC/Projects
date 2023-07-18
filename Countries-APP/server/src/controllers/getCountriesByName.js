@@ -1,23 +1,44 @@
 const { Country, Activity } = require("../db");
 const { Op } = require("sequelize");
 
-const getCountriesById = async (req, res) => {
-  try {
-    const { name } = req.query;
-    const results = await Country.findAll({
-      where: {
-        name: {
-          [Op.iLike]: `%${name}%`,
-        },
-      },
-      include: { model: Activity },
-    });
-
-    if (!results) throw new Error("No hay país con ese Nombre");
-    return res.status(200).json(results);
-  } catch (error) {
-    return res.status(500).json({ error: error.message });
-  }
+const getCountriesByName = async (req, res) => {
+    try {
+        const { name, continent, activity } = req.query;
+        let condition = {
+            name: {
+                [Op.iLike]: `%${name}%`,
+            },
+        };
+        if (continent !== "All") condition.continent = continent;
+        let activityCondition = {};
+        if (activity !== "allActivities") {
+            activityCondition = {
+                name: {
+                    [Op.iLike]: `%${activity}%`,
+                },
+            };
+        }
+        const results = await Country.findAll({
+            where: condition,
+            include: {
+                model: Activity,
+                where: activityCondition,
+            },
+        });
+        let finalResults = results;
+        if ( activity !== "allActivities" && results.length === 0) {
+            finalResults = [];
+        }
+        if ( activity === "allActivities") {
+          finalResults = await Country.findAll({
+              where: condition,
+          });
+        }
+        if (finalResults.length === 0) throw new Error("No hay país con ese Nombre");
+        return res.status(200).json(finalResults);
+    } catch (error) {
+        return res.status(500).json(error.message);
+    }
 };
 
-module.exports = getCountriesById;
+module.exports = getCountriesByName;

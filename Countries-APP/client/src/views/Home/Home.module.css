@@ -1,0 +1,70 @@
+.container {
+    width: 95%;
+    margin: auto;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+  }
+  .filters {
+    background-color: rgb(0, 0, 0, 0.4);
+    width: 20%;
+    padding-bottom: 20px;
+    margin-top: 65px;
+    
+    & .selects{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+      position: sticky;
+      top: 20px;
+      & select {
+        margin-bottom: 40px;
+        padding: 10px 0;
+        border-radius: 20px;
+        text-align: center;
+        border: solid 2px black;
+        font-family: "Helvetica Neue";
+        text-transform: uppercase;
+        font-size: x-large;
+        font-weight: bold;
+        border-radius: 10px;
+        &:hover {
+            cursor: pointer;
+        }
+      }
+    }
+
+    & button {
+        font-family: "Helvetica Neue";
+        text-transform: uppercase;
+        font-size: large;
+        font-weight: bold;
+        margin-left: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        border: solid 2px black;
+        &:hover {
+          cursor: pointer;
+          background-color: #707070;
+          
+        }
+      }
+    
+  }
+  
+  .cards {
+    width: 80%;
+  }
+
+  .search {
+    text-align: center;
+    margin-bottom: 20px;
+  }

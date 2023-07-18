@@ -1,0 +1,12 @@
+.container {
+    & input {
+      font-family: "Helvetica Neue";
+      font-size: large;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-align: center;
+      border: solid 2px black;
+      padding: 10px;
+      border-radius: 10px;
+    }
+  }

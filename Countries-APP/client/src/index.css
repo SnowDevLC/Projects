@@ -1,5 +1,11 @@
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('./assets/fonts/HelveticaNeue.otf');
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica;
+  text-transform: uppercase;
   line-height: 1.5;
   font-weight: 400;
 
