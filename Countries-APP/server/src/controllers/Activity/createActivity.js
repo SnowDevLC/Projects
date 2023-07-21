@@ -6,7 +6,7 @@ const createActivity = async (req, res) => {
         const countriesId = countries.map((country) => country.id);
 
         if (!countriesId || countriesId.length <= 0) {
-            return res.status(400).json({ error: "Country not found" });
+            return res.status(400).json("Country not found");
         }
 
         const existingActivity = await Activity.findOne({
@@ -22,7 +22,7 @@ const createActivity = async (req, res) => {
         });
 
         if (existingActivity) {
-            return res.status(405).json({ error: "Activity already exists in the selected country(s)" });
+            return res.status(405).json("Activity already exists in the selected country(s)");
         }
 
         const newActivity = await Activity.create({
@@ -43,7 +43,7 @@ const createActivity = async (req, res) => {
 
         res.status(200).json(newActivity);
     } catch (error) {
-        res.status(500).json({ error: "Server error occurred" });
+        res.status(500).json("Server error occurred");
     }
 };
 

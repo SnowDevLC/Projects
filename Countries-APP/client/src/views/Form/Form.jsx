@@ -120,7 +120,7 @@ export default function Form() {
             try {
                 const response = await axios.post(`${URL_BASE}/activities`, input);
                 if (response.status === 200) {
-                    window.alert("La actividad se agrego correctamente");
+                    window.alert("The activity was added successfully");
                     setErrors({});
                     setInput({
                         name: "",

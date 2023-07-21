@@ -64,7 +64,7 @@ export const cleanDetail = () => {
 export const getCountryByName = (name, continent, activity) => {
     return async (dispatch) => {
         try {
-            dispatch(setLoader({show: true, message: "Cargando"}));
+            dispatch(setLoader({show: true, message: "Loading"}));
             const { data } = await axios.get(
                 `${URL_BASE}/countries/name?name=${name.trim()}&continent=${continent}&activity=${activity}`
             );
