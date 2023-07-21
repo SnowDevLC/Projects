@@ -46,7 +46,9 @@ export default function Cards({ countries }) {
     return (
         <>
             {currentCountries.length === 0 ? (
-                <h2>No countries available</h2>
+                <div className={style.noCountries}>
+                    <h2>No countries available with those filters</h2>
+                </div>
             ) : (
                 <div className={style.container}>
                     {currentCountries?.map((country) => (

@@ -153,8 +153,10 @@
     & input {
         width: 90%;
         margin: 0;
+        color: white;
     }
     & .number {
+        color: white;
         margin-top: 10px;
         font-size: 20px;  
     }

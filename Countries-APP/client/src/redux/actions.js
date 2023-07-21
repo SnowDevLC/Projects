@@ -78,7 +78,7 @@ export const getCountryByName = (name, continent, activity) => {
                 payload: [],
             });
         } finally {
-            setTimeout(()=>dispatch(dispatch(setLoader({show: false, message: ""}))), 500);
+            /* setTimeout(()=>dispatch( */dispatch(setLoader({show: false, message: ""}))/* ), 500) */;
         }
     };
 };
