@@ -9,31 +9,34 @@
   .content {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    
+    justify-content: space-around;
+    margin-top: 20px;
   }
   .filters {
-    background-color: rgb(0, 0, 0, 0.4);
-    width: 20%;
-    padding-bottom: 20px;
-    margin-top: 65px;
-    
+    background-color: rgb(0, 0, 0, 0.8);
+    width: 15%;
+    height: 489px;
+    padding: 20px 0;
+    border-radius: 10px;
+    color: white;
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    top: 20px;
     & .selects{
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: 20px;
-      position: sticky;
-      top: 20px;
       & select {
-        margin-bottom: 40px;
+        margin-bottom: 30px;
         padding: 10px 0;
         border-radius: 20px;
         text-align: center;
         border: solid 2px black;
         font-family: "Helvetica Neue";
         text-transform: uppercase;
-        font-size: x-large;
+        font-size: large;
         font-weight: bold;
         border-radius: 10px;
         &:hover {
@@ -47,17 +50,15 @@
         text-transform: uppercase;
         font-size: large;
         font-weight: bold;
-        margin-left: 10px;
         padding: 10px;
         border-radius: 10px;
         border: solid 2px black;
         &:hover {
           cursor: pointer;
-          background-color: #707070;
+          background-color: #019ca0;
           
         }
       }
-    
   }
   
   .cards {

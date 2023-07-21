@@ -1,0 +1,75 @@
+.container {
+    animation: spinIn 0.5s ease-in-out;
+    width: 80%;
+    margin: auto;
+    background-color: rgb(0, 0, 0, 0.8);
+    border-radius: 40px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    & .country,
+    .activities {
+        width: 50%;
+    }
+    color: white;
+}
+@keyframes spinIn {
+    0% {
+        transform: rotate(-180deg) scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: rotate(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.country {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    & h1 {
+        font-size: 5rem;
+        margin: 10px;
+    }
+    & h2 {
+        font-size: xx-large;
+        margin: 10px;
+    }
+    
+    text-align: center;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+    padding: 20px 0;
+
+    & img {
+        width: 400px;
+        height: 240px;
+        border-radius: 20px;
+        align-items: center;
+    }
+}
+
+.activities {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 0;
+    & h2 {
+        font-size: xx-large;
+    }
+    & .activitiesGrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
+        justify-content: center;
+        gap: 30px;
+        & .activity {
+            background-color: rgb(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 10px;
+        }
+    }
+}

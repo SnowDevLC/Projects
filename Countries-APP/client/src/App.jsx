@@ -5,9 +5,10 @@ import { Footer, Nav } from "./components";
 
 function App() {
     const location = useLocation();
-
+    
     return (
         <>
+
             {location.pathname !== "/" && <Nav />}
             <Routes>
                 <Route exact path="/" element={<Landing />} />

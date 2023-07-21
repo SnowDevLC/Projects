@@ -1,11 +1,11 @@
 const { Router } = require("express");
 
-const getCountries = require("../controllers/getCountries");
-const getCountriesById = require("../controllers/getCountriesById");
-const getCountriesByName = require("../controllers/getCountriesByName");
+const getCountries = require("../controllers/Country/getCountries");
+const getCountriesById = require("../controllers/Country/getCountriesById");
+const getCountriesByName = require("../controllers/Country/getCountriesByName");
 
-const createActivity = require("../controllers/createActivity");
-const getActivities = require("../controllers/getActivity");
+const createActivity = require("../controllers/Activity/createActivity");
+const getActivities = require("../controllers/Activity/getActivity");
 
 const router = Router();
 

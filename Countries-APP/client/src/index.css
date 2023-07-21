@@ -9,8 +9,14 @@
   line-height: 1.5;
   font-weight: 400;
 
-  background-image: url('./assets/wallpapers/fondo10.jpg');
-  background-position: center;
+  background-image: url('./assets/wallpapers/fondo2.jpg');
+  /* background-position: center;
+  background-attachment: fixed; */
+
+  background-size: cover;
+  background-repeat: no-repeat;
+   
+  
   background-attachment: fixed;
 
   font-synthesis: none;

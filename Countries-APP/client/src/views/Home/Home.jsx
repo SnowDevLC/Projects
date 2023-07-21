@@ -1,87 +1,64 @@
 import { useEffect } from "react";
 import { Cards, SearchBar } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
-import { getCountries, getCountryByName, orderCountries, setCurrentPage, setFilters} from "../../redux/actions";
+import { getActivities, getCountries, getCountryByName, setCurrentPage, setFilters } from "../../redux/actions";
 
 import style from "./Home.module.css";
 
 export default function Home() {
     const countries = useSelector((state) => state.filteredCountries);
-    const order = useSelector((state) => state.order);
+    const activities = useSelector((state) => state.activities);
     const filters = useSelector((state) => state.filters);
 
     const dispatch = useDispatch();
 
     const defaultContinent = "All";
     const defaultActivity = "allActivities";
-    const defaultAlphabet = "Default";
-    const defaultPopulation = "Default";
+    const defaultOrder = "Default";
 
     //? FILTRO BY NAME
     const handleChange = (e) => {
         e.preventDefault();
         const value = e.target.value;
-        const filtersB = {...filters, search: value};
-        dispatch(setFilters(filtersB));
-        dispatch(getCountryByName(value, filters.continent, filters.activity)).then(() => {
-            dispatch(orderCountries(order));
-        });
+        dispatch(getCountryByName(value, filters.continent, filters.activity));
+        dispatch(setFilters({ ...filters, search: value, order: "Default" }));
     };
 
     useEffect(() => {
-        dispatch(getCountries())
-        .then(() => dispatch(getCountryByName(filters.search, filters.continent, filters.activity)))
-        .then(() => dispatch(orderCountries(order)));
+        dispatch(getActivities());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    useEffect(() => {
+            dispatch(getCountries())
+            .then(() => dispatch(setFilters(filters)))
+            .then(() => dispatch(getCountryByName(filters.search, filters.continent, filters.activity)));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
 
-    const handleOrder = (e) => {
-        let filtersB = {};
-        dispatch(orderCountries(e.target.value));
-        dispatch(setCurrentPage(1));
-        if (e.target.name === "alphabet") {
-            filtersB = ({ ...filters, population: defaultPopulation, [e.target.name]: e.target.value });
-        } else if (e.target.name === "population") {
-            filtersB = ({ ...filters, alphabet: defaultAlphabet, [e.target.name]: e.target.value });
-        } 
-        dispatch(setFilters(filtersB));
-    };
-
     const handleFilter = (e) => {
-        let filtersB = {};
         dispatch(setCurrentPage(1));
         if (e.target.name === "continent") {
-            const continent = e.target.value;
-            filtersB = { ...filters, continent: continent };
-            dispatch(getCountryByName(filters.search, continent, filters.activity)).then(() => {
-                dispatch(orderCountries(order));
-            });
+            dispatch(setFilters({ ...filters, continent: e.target.value }));
+        } else if (e.target.name === "activity"){
+            dispatch(setFilters({ ...filters, activity: e.target.value }));
         } else {
-            const activity = e.target.value;
-            filtersB = { ...filters, activity: activity };
-            dispatch(getCountryByName(filters.search, filters.continent, activity)).then(() => {
-                dispatch(orderCountries(order));
-            });
+            dispatch(setFilters({ ...filters, order: e.target.value }));
         }
-        dispatch(setFilters(filtersB));
     };
 
     const handleReset = () => {
         const filtersB = {
             continent: defaultContinent,
             activity: defaultActivity,
-            alphabet: defaultAlphabet,
-            population: defaultPopulation,
-            search: ""
-        }
+            order: defaultOrder,
+            search: "",
+        };
         dispatch(setFilters(filtersB));
-        dispatch(getCountryByName("", "All", "allActivities")).then(() => {
-            dispatch(orderCountries("Default"));
-        });
+        dispatch(getCountryByName("", "All", "allActivities"));
     };
     return (
         <div className={style.container}>
-            <h1>COUNTRIES APP</h1>
             <div className={style.content}>
                 <aside className={style.filters}>
                     <div className={style.selects}>
@@ -98,20 +75,23 @@ export default function Home() {
                         <span>By Activity</span>
                         <select onChange={handleFilter} value={filters.activity} name="activity">
                             <option value="allActivities">All</option>
-                            <option value="Futbol">Futbol</option>
-                            <option value="Basquet">Basquet</option>
+                            {activities?.map((activity, index) => (
+                                <option key={index} value={activity.name}>
+                                    {activity.name}
+                                </option>
+                            ))}
                         </select>
                         <span>By Alphabet</span>
-                        <select onChange={handleOrder} value={filters.alphabet} name="alphabet">
+                        <select onChange={handleFilter} value={filters.order} name="alphabet">
                             <option value="Default">Default</option>
-                            <option value="A">Ascendente</option>
-                            <option value="D">Descendente</option>
+                            <option value="A">A-Z</option>
+                            <option value="Z">Z-A</option>
                         </select>
                         <span>By Population</span>
-                        <select onChange={handleOrder} value={filters.population} name="population">
+                        <select onChange={handleFilter} value={filters.order} name="population">
                             <option value="Default">Default</option>
-                            <option value="H">Higher Population</option>
-                            <option value="L">Lower Population</option>
+                            <option value="H">Higher</option>
+                            <option value="L">Lower</option>
                         </select>
 
                         <button type="button" onClick={handleReset}>

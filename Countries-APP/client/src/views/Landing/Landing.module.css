@@ -1,0 +1,119 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+    & button {
+        font-family: "Helvetica Neue";
+        text-transform: uppercase;
+        font-size: large;
+        font-weight: bold;
+        margin-left: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        border: solid 2px black;
+        &:hover {
+            cursor: pointer;
+            background-color: #019ca0;
+        }
+    }
+}
+
+
+.arrowL,
+.arrowL:before{
+  position: absolute;
+  right: 50%;
+}
+.arrowL{
+  width: 40px;
+  height: 40px;
+  margin-right: 90px;
+  transform: rotate(-45deg);
+  border-left: none;
+  border-top: none;
+  border-right: 4px black solid;
+  border-bottom: 4px black solid;
+}
+  
+.arrowL:before{
+  content: '';
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  margin: -10px -10px 0 0;
+  border-left: none;
+  border-top: none;
+  border-right: 3px black solid;
+  border-bottom: 3px black solid;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-name: arrowL;
+}
+  
+@keyframes arrowL{
+  0%
+    {opacity: 1}
+  100%
+    {opacity: 0;
+    transform: translate(-10px, -10px)}
+}
+
+
+
+
+.arrow,
+.arrow:before{
+  position: absolute;
+  left: 50%
+}
+.arrow{
+  width: 40px;
+  height: 40px;
+  margin-left: 100px;
+  transform: rotate(135deg);
+  border-left: none;
+  border-top: none;
+  border-right: 4px black solid;
+  border-bottom: 4px black solid;
+}
+  
+.arrow:before{
+  content: '';
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  margin: -10px 0 0 -10px;
+  border-left: none;
+  border-top: none;
+  border-right: 3px black solid;
+  border-bottom: 3px black solid;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-name: arrow;
+}
+  
+@keyframes arrow{
+  0%
+    {opacity: 1}
+  100%
+    {opacity: 0;
+    transform: translate(-10px, -10px)}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
