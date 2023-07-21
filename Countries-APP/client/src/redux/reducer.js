@@ -12,6 +12,7 @@ import {
 
 const initialState = {
     countries: [],
+    countriesCopy: [],
     activities: [],
     filteredCountries: [],
     filteredCountriesDefault: [],
@@ -28,13 +29,14 @@ const initialState = {
 };
 
 const rootReducer = (state = initialState, action) => {
-    let countriesByFilters = [...state.countries];
+    let countriesByFilters = [...state.countriesCopy];
     let orderedCountries = [...state.filteredCountries];
     switch (action.type) {
         case GET_COUNTRIES:
             return {
                 ...state,
                 countries: action.payload,
+                countriesCopy: action.payload,
                 filteredCountries: action.payload,
                 filteredCountriesDefault: action.payload,
             };
@@ -62,21 +64,18 @@ const rootReducer = (state = initialState, action) => {
             };
         
         case SET_FILTERS:
-            console.log(action.payload)
             if(action.payload.continent !== "All"){
-                console.log("entro")
                 orderedCountries = countriesByFilters.filter((country) => country.continent === action.payload.continent);   
             }else{
                 orderedCountries = countriesByFilters;
             }
             if(action.payload.activity !== "allActivities"){
-                console.log("entro")
                 orderedCountries = orderedCountries.filter((country) => country.Activities.some((activity) => activity.name === action.payload.activity));
             }
             switch (action.payload.order) {
                 case "A":
                 case "Z":
-                    console.log("entro")
+
                     orderedCountries.sort((a, b) => {
                         const nameA = a.name.toLowerCase();
                         const nameB = b.name.toLowerCase();
