@@ -28,9 +28,9 @@ const loadApi = async () => {
 };
 
 const getContinentName = (continents) => {
-    const americaNames = ["North America", "South America", "Central America"];
+    const america = ["North America", "South America", "Central America"];
 
-    if (americaNames.includes(continents)) {
+    if (america.includes(continents)) {
         return "America";
     }
     return continents;

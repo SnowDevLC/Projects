@@ -37,7 +37,8 @@ const getCountriesByName = async (req, res) => {
                 },
             });
         }
-        if (finalResults.length === 0) throw new Error("No hay país con ese Nombre");
+        if (finalResults.length === 0) throw new Error(
+            "There is no country with that name");
         return res.status(200).json(finalResults);
     } catch (error) {
         return res.status(500).json(error.message);
