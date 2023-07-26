@@ -33,6 +33,10 @@ module.exports = (sequelize) => {
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false,
       },
+      createBy:  {
+        type: DataTypes.STRING,
+        defaultValue: "Luis"
+      },
     },
     {
       timestamps: false,

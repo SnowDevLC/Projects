@@ -30,6 +30,7 @@ export default function Detail() {
                                         <h3>Difficulty: {activity.difficulty}</h3>
                                         <h3>Duration: {activity.duration} hrs</h3>
                                         <h3>Season: {activity.season.join(" - ")}</h3>
+                                        <h3>Create by: {activity.createBy}</h3>
                                     </div>
                                 ))
                             ) : (
