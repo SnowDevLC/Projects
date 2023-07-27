@@ -1,4 +1,4 @@
-const onlyLetters = /^[A-Za-z]+$/;
+const onlyLetters = /^[A-Za-z\s]+$/;
 
 const validate = (activityData) => {
   let errors = {};
@@ -7,6 +7,8 @@ const validate = (activityData) => {
     errors.name = "Name requerido";
   }else if(!onlyLetters.test(activityData.name)){
     errors.name = "Only letters are allowed";
+  }else if(activityData.name.trim() !== activityData.name){
+    errors.name = "Has spaces at the beginning or end";
   }else if(activityData.name.length > 20){
     errors.name = "Max length of name is 20 characters.";
   }
