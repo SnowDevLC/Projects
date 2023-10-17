@@ -7,8 +7,7 @@ function App() {
     const location = useLocation();
     
     return (
-        <>
-
+        <div className="container">
             {location.pathname !== "/" && <Nav />}
             <Routes>
                 <Route exact path="/" element={<Landing />} />
@@ -17,7 +16,7 @@ function App() {
                 <Route path="/form" element={<Form />} />
             </Routes>
             {location.pathname !== "/" && <Footer />}
-        </>
+        </div>
     );
 }
 

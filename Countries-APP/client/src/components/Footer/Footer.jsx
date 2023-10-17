@@ -4,7 +4,7 @@ import linkedin from "../../assets/linkedin.png";
 
 export default function Footer() {
     return (
-        <footer>
+        <footer className={style.footer}>
             <div className={style.container}>
                 <div className={style.text}>
                     <h3>Developed by Luis Canales &copy; {new Date().getFullYear()}</h3>
